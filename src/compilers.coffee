@@ -107,6 +107,23 @@ try
     module._compile "module.exports = #{source}", filename
 catch err
 
+try
+  less = require('less')
+  
+  compilers.less = (_path) ->
+    content = fs.readFileSync(_path, 'utf8')
+    result = ''
+    less.render content, (err, css) ->
+      throw err if err
+      result = css
+    result
+    
+  require.extensions['.less'] = (module, filename) -> 
+    console.log('FOUND A LESS FILE!')
+    source = JSON.stringify(compilers.less(filename))
+    module._compile "module.exports = #{source}", filename
+catch err
+
 # create a javascript module based off key values found in environment
 
 compilers.env = (path) ->
