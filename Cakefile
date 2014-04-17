@@ -2,7 +2,7 @@
 {spawn} = require 'child_process'
 
 build = (callback, watch = false) ->
-  coffee = spawn 'coffee', [(if watch then '-cw' else '-c'), '-o', 'lib', 'src']
+  coffee = spawn './node_modules/.bin/coffee', [(if watch then '-cw' else '-c'), '-o', 'lib', 'src']
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
   coffee.stdout.on 'data', (data) ->

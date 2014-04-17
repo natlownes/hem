@@ -113,7 +113,7 @@ class Hem
 
     # start server
     server = http.createServer(app).listen(@options.server.port, @options.server.host)
-    
+
     # TODO: live_reload business!
     #if --live arg then
       #io.listen(server)
@@ -163,7 +163,7 @@ class Hem
 
   buildTargets: (targets = []) ->
     buildAll = targets.length is 0
-    # TODO: preset a versionAddOn var if argv.setVersion 
+    # TODO: preset a versionAddOn var if argv.setVersion
     #if argv.setVersion and argv.version is null
       #version = new Date().getUTCMilliseconds()  #or something like this...
     pkg.build(not argv.debug) for pkg in @packages when pkg.name in targets or buildAll
@@ -231,7 +231,7 @@ class Hem
         bestMatch.url = url + pkg.target.slice(dir.length)
         bestMatch.dir = dir
     bestMatch.url
-    
+
   #registerSocketEvents: () ->
     #io.sockets.on 'connection', (socket) ->
     #  socket.emit 'news', { hello: 'world' }
